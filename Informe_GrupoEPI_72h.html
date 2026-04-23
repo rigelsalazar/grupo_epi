@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Performance Report · Grupo EPI × Los Buenos Somos Más · Resultados de las primeras 72 horas del reel">
+<meta name="theme-color" content="#FE5800">
+<title>Performance Report · Grupo EPI × LBSM</title>
+<script>document.documentElement.classList.remove('no-js');</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --orange: #FE5800;
+    --yellow: #FACD01;
+    --blue:   #2BA3D6;
+    --lblue:  #5EB2CB;
+    --epi-blue: #3AA5D8; /* fondo del cover original de Grupo EPI */
+    --black:  #111111;
+    --white:  #FFFFFF;
+    --g1:     #F7F7F7;
+    --g2:     #E8E8E8;
+    --g3:     #999999;
+    --font:   'Inter', 'Century Gothic', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--orange);
+    padding: 24px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header img { height: 88px; filter: drop-shadow(3px 4px 0px rgba(0,0,0,0.2)); }
+  .header-right { text-align: right; }
+  .header-right .client { font-size: 32px; font-weight: 900; color: var(--yellow); letter-spacing: -0.5px; display: block; }
+  .header-right .period { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--black);
+    display: grid;
+    /* Columna izquierda a exactamente 9:16 respecto a min-height para que la portada del reel no se recorte */
+    grid-template-columns: 270px 1fr;
+    align-items: stretch;
+    min-height: 480px;
+  }
+
+  /* Reel cover — portada 9:16 del reel de Instagram (Grupo EPI) */
+  .reel-side {
+    background: var(--epi-blue);
+    position: relative;
+    overflow: hidden;
+    align-self: stretch;
+    min-height: 480px;
+  }
+  .reel-side img.reel-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 1;
+    display: block;
+    background: var(--epi-blue);
+  }
+  /* Escena SVG de fondo (fallback estético si no hay cover-epi.png) */
+  .reel-placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 72%, rgba(250,205,1,0.55) 0%, transparent 55%),
+      linear-gradient(180deg,
+        #FF9A3C 0%,
+        #FE5800 38%,
+        #C23E00 58%,
+        #2BA3D6 62%,
+        #1E6F93 100%);
+    overflow: hidden;
+  }
+  .reel-placeholder::before {
+    /* Sol */
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 78px; height: 78px;
+    border-radius: 50%;
+    background: #FACD01;
+    box-shadow: 0 0 48px 10px rgba(250,205,1,0.55);
+  }
+  .reel-placeholder::after {
+    /* Línea horizonte */
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 62%;
+    height: 1px;
+    background: rgba(0,0,0,0.25);
+  }
+  .reel-figures {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+    height: 42%;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 14px 8px;
+  }
+  .reel-figures svg { width: 100%; height: 100%; display: block; }
+
+  .reel-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 18px 14px 0;
+    gap: 10px;
+    pointer-events: none;
+  }
+  .reel-badge {
+    background: var(--orange);
+    border: 2px solid var(--lblue);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+    white-space: nowrap;
+  }
+  .reel-name-box {
+    background: var(--orange);
+    border: 3px solid var(--black);
+    border-radius: 12px;
+    box-shadow: 5px 5px 0 var(--black);
+    padding: 10px 14px 12px;
+    text-align: center;
+    width: calc(100% - 4px);
+    max-width: 240px;
+  }
+  .reel-name-box .rn-title {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: -0.3px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    line-height: 1.08;
+    -webkit-text-stroke: 0.8px var(--black);
+    text-shadow: 1.5px 1.5px 0 var(--black);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .reel-name-box .rn {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    line-height: 0.95;
+    -webkit-text-stroke: 1.2px var(--black);
+    text-shadow: 2.5px 2.5px 0 var(--black);
+    display: block;
+  }
+  .reel-views {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 4;
+    background: rgba(0,0,0,0.65);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  /* Hero numbers */
+  .hero-nums {
+    padding: 44px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: center;
+    gap: 0;
+  }
+  .hero-top { display: flex; flex-direction: column; gap: 8px; }
+  .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--g3); }
+  .hero-big { font-size: 88px; font-weight: 900; letter-spacing: -5px; color: var(--white); line-height: 1; }
+  .hero-big.hero-yellow { color: var(--yellow); }
+  .hero-sub { font-size: 13px; font-weight: 500; color: var(--g3); }
+  .hero-divider { align-self: stretch; background: rgba(255,255,255,0.1); width: 1px; margin: 0 44px; }
+  .hero-metric { display: flex; flex-direction: column; gap: 8px; }
+  .hero-metric:last-child { padding-left: 4px; }
+
+  /* ── MAIN CONTENT ── */
+  .content { padding: 72px 56px; display: flex; flex-direction: column; gap: 72px; max-width: 1100px; margin: 0 auto; }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sec-title .st-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--orange); flex-shrink: 0;
+  }
+  .sec-title .st-dot.blue { background: var(--blue); }
+  .sec-title .st-dot.yellow { background: var(--yellow); border: 1.5px solid #b89600; }
+  .sec-title::after { content: ''; flex: 1; height: 1.5px; background: var(--g2); }
+
+  /* ── ENGAGEMENT ── */
+  .eng-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 1.5px solid var(--g2);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .eng-cell {
+    padding: 28px 26px;
+    border-right: 1.5px solid var(--g2);
+    display: flex; flex-direction: column; gap: 5px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
+  }
+  .eng-cell:last-child { border-right: none; }
+  .eng-cell.visible { opacity: 1; transform: translateY(0); }
+  /* La celda de Comentarios destacada */
+  .eng-cell.highlight {
+    background: linear-gradient(135deg, #FFF6B8 0%, #FACD01 100%);
+    color: var(--black);
+  }
+  .eng-cell.highlight .ec-lbl { color: rgba(0,0,0,0.6); }
+  .eng-cell.highlight .ec-val { color: var(--black); font-size: 42px; }
+  .eng-cell.highlight .ec-rate { color: rgba(0,0,0,0.55); }
+  .eng-cell.highlight::before {
+    content: '★ DESTACADO';
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--orange);
+    background: var(--white);
+    padding: 3px 7px;
+    border-radius: 100px;
+    border: 1.5px solid var(--orange);
+  }
+  .ec-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--g3); }
+  .ec-val { font-size: 32px; font-weight: 900; letter-spacing: -1.5px; color: var(--black); line-height: 1.1; }
+  .ec-rate { font-size: 12px; font-weight: 600; color: var(--g3); }
+  /* Un poco menos de padding horizontal porque ahora son 5 columnas */
+  .eng-cell { padding-left: 22px; padding-right: 22px; }
+  .tag-up {
+    display: inline-block;
+    background: #dcfce7; color: #15803d;
+    font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 100px; margin-top: 4px; width: fit-content;
+  }
+  .tag-up.yellow-bg { background: rgba(0,0,0,0.12); color: var(--black); }
+
+  /* ── SOURCES (origen de vistas) ── */
+  .src-wrap {
+    border: 1.5px solid var(--g2);
+    border-radius: 18px;
+    padding: 30px 36px 32px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .src-wrap.visible { opacity: 1; transform: translateY(0); }
+  .src-row { display: grid; grid-template-columns: 120px 1fr 60px; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .src-row:last-child { margin-bottom: 0; }
+  .src-lbl { font-size: 13px; font-weight: 700; color: var(--black); }
+  .src-bar { height: 10px; background: var(--g2); border-radius: 100px; overflow: hidden; }
+  .src-bar-fill { height: 100%; background: linear-gradient(90deg, var(--orange), var(--yellow)); border-radius: 100px; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+  .src-pct { font-size: 15px; font-weight: 800; color: var(--black); text-align: right; }
+
+  /* ── AUDIENCE: TWO-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .donut-panel {
+    border: 1.5px solid var(--g2);
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .donut-panel.visible { opacity: 1; transform: translateY(0); }
+  .dp-label { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 20px; }
+
+  .aud-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .aud-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  .aud-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.6);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .donut-panel.visible .aud-icon { opacity: 1; transform: scale(1); }
+  .donut-panel.visible .aud-icon:nth-of-type(1) { transition-delay: 0.3s; }
+  .aud-icon svg { width: 32px; height: 40px; }
+  .aud-pct {
+    font-size: 40px; font-weight: 900; letter-spacing: -2px; line-height: 1;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s;
+  }
+  .donut-panel.visible .aud-pct { opacity: 1; transform: translateY(0); }
+  .aud-name {
+    font-size: 9px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--g3);
+  }
+
+  .aud-donut { position: relative; flex-shrink: 0; width: 160px; height: 160px; }
+  .aud-donut svg { width: 160px; height: 160px; }
+
+  .ap-arc {
+    fill: none; stroke-linecap: butt;
+    stroke-dasharray: 0 389.56;
+    transition: stroke-dasharray 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  }
+  .ap-arc-2 {
+    fill: none; stroke-linecap: butt;
+    stroke-dasharray: 0 389.56;
+    transition: stroke-dasharray 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.55s;
+  }
+
+  /* ── COUNTRIES ── */
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .cc {
+    border: 1.5px solid var(--g2);
+    border-radius: 16px;
+    padding: 22px 16px 16px;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative; overflow: hidden;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .cc.visible { opacity: 1; transform: translateY(0); }
+  .cc::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; border-radius: 0 0 12px 12px; }
+  .cc.r1::after { background: var(--orange); }
+  .cc.r2::after { background: var(--blue); }
+  .cc.r3::after { background: var(--lblue); }
+  .cc.r4::after { background: #85c1e9; }
+  .cc.r5::after { background: #aed6f1; }
+  .cc-flag { font-size: 28px; }
+  .cc-pct { font-size: 30px; font-weight: 900; letter-spacing: -1px; color: var(--black); line-height: 1; }
+  .cc-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--g3); }
+
+  /* ── AGE ── */
+  .age-wrap {
+    border: 1.5px solid var(--g2);
+    border-radius: 18px;
+    padding: 36px 36px 28px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .age-wrap.visible { opacity: 1; transform: translateY(0); }
+  .age-header { margin-bottom: 32px; }
+  .age-header .ah-title { font-size: 20px; font-weight: 800; color: var(--black); }
+  .age-header .ah-sub { font-size: 13px; font-weight: 500; color: var(--g3); margin-top: 4px; }
+  .age-bars { display: flex; align-items: flex-end; gap: 20px; height: 140px; }
+  .age-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; height: 100%; justify-content: flex-end; }
+  .age-val { font-size: 13px; font-weight: 800; color: var(--black); }
+  .age-bar { width: 100%; border-radius: 8px 8px 0 0; height: 0; transition: height 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+  .age-bar.t-orange { background: var(--orange); }
+  .age-bar.t-blue { background: var(--blue); }
+  .age-bar.t-gray { background: var(--g2); }
+  .age-lbl { font-size: 11px; font-weight: 600; color: var(--g3); text-align: center; }
+
+  /* ── AUTOMATION ── */
+  .auto-block {
+    background: var(--yellow);
+    border-radius: 20px;
+    padding: 48px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 280px;
+    gap: 0;
+    align-items: center;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .auto-block.visible { opacity: 1; transform: translateY(0); }
+  .auto-div { background: rgba(0,0,0,0.12); align-self: stretch; margin: 0 40px; }
+  .a-col { display: flex; flex-direction: column; gap: 8px; }
+  .a-lbl { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.45); }
+  .a-big { font-size: 72px; font-weight: 900; letter-spacing: -4px; color: var(--black); line-height: 1; }
+  .a-sub { font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.55); }
+  .a-rows { display: flex; flex-direction: column; gap: 20px; }
+  .a-row { display: flex; flex-direction: column; gap: 4px; }
+  .a-row .ar-platform { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+  .a-row .ar-val { font-size: 40px; font-weight: 900; letter-spacing: -2px; color: var(--black); line-height: 1; }
+  .a-row .ar-conv { font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.4); }
+  .a-cta { display: flex; flex-direction: column; gap: 10px; }
+  .a-cta .cta-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+  .a-cta .cta-word { font-size: 60px; font-weight: 900; letter-spacing: 4px; color: var(--orange); line-height: 1; -webkit-text-stroke: 2px var(--black); text-shadow: 4px 4px 0 var(--black); }
+  .a-cta .cta-desc { font-size: 12px; font-weight: 500; color: rgba(0,0,0,0.5); line-height: 1.6; max-width: 220px; margin-top: 8px; }
+
+  /* ── FACEBOOK ── */
+  .fb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1.5px solid var(--g2);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .fb-cell {
+    padding: 32px 28px;
+    border-right: 1.5px solid var(--g2);
+    display: flex; flex-direction: column; gap: 6px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fb-cell:last-child { border-right: none; }
+  .fb-cell.visible { opacity: 1; transform: translateY(0); }
+  .fb-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--g3); }
+  .fb-val { font-size: 40px; font-weight: 900; letter-spacing: -1.5px; color: var(--black); line-height: 1.1; }
+  .fb-bar { height: 4px; background: var(--g2); border-radius: 100px; margin-top: 10px; overflow: hidden; }
+  .fb-bar-fill { height: 100%; background: var(--blue); border-radius: 100px; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--black); padding: 24px 56px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-l { display: flex; flex-direction: column; gap: 2px; }
+  .footer-brand { font-size: 13px; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: 1px; }
+  .footer-tag { font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; }
+  .footer-r { font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.25); text-align: right; line-height: 1.7; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 260px 1fr; min-height: 420px; }
+    .reel-side { min-height: 420px; }
+    .hero-nums { padding: 36px 32px; }
+    .hero-big { font-size: 64px; letter-spacing: -3px; }
+    .content { padding: 56px 32px; }
+    .countries-grid { grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .header img { height: 52px; }
+    .header-right { text-align: right; }
+    .header-right .client { font-size: 22px; }
+    .header-right .period { font-size: 9px; letter-spacing: 2px; }
+
+    .hero { grid-template-columns: 1fr; min-height: unset; }
+    .reel-side { min-height: unset; aspect-ratio: 9 / 16; max-height: 640px; }
+    .reel-side img.reel-photo { object-position: center center; }
+    .reel-overlay { padding-top: 24px; }
+    .reel-name-box { max-width: 280px; }
+    .reel-name-box .rn-title { font-size: 14px; }
+    .reel-name-box .rn { font-size: 30px; }
+
+    .hero-nums { display: grid; grid-template-columns: 1fr 1fr; padding: 28px 20px 32px; gap: 0; }
+    .hero-divider { display: none; }
+    .hero-metric:last-child { padding-left: 0; }
+    .hero-big { font-size: 48px; letter-spacing: -2.5px; }
+    .hero-eyebrow { font-size: 8px; letter-spacing: 1.5px; }
+
+    .content { padding: 40px 20px; gap: 48px; }
+    .sec-title { font-size: 17px; }
+
+    .eng-grid { grid-template-columns: repeat(2, 1fr); }
+    .eng-cell { border-bottom: 1.5px solid var(--g2); border-right: 1.5px solid var(--g2); }
+    .eng-cell:nth-child(2n) { border-right: none; }
+    .eng-cell:nth-last-child(-n+2) { border-bottom: none; }
+    /* Si queda una celda sola, toma fila completa */
+    .eng-cell:nth-child(5):last-child { grid-column: span 2; border-right: none; }
+    .ec-val { font-size: 28px; }
+    .eng-cell.highlight .ec-val { font-size: 34px; }
+
+    .src-row { grid-template-columns: 90px 1fr 50px; gap: 10px; }
+    .src-lbl { font-size: 12px; }
+
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+    .aud-row { gap: 12px; }
+    .aud-donut { width: 130px; height: 130px; }
+    .aud-donut svg { width: 130px; height: 130px; }
+    .aud-pct { font-size: 32px; }
+    .aud-icon { width: 52px; height: 52px; }
+    .aud-icon svg { width: 26px; height: 33px; }
+
+    .countries-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cc { padding: 16px 12px 12px; }
+
+    #age-section { padding: 24px 16px; }
+
+    .auto-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
+    .auto-div { display: none; }
+    .a-big { font-size: 64px; }
+    .a-row .ar-val { font-size: 32px; }
+    .a-cta .cta-word { font-size: 46px; letter-spacing: 3px; }
+    .a-cta .cta-desc { max-width: 100%; }
+
+    .fb-grid { grid-template-columns: 1fr; }
+    .fb-cell { padding: 20px 16px; border-right: none; border-bottom: 1.5px solid var(--g2); }
+    .fb-cell:last-child { border-bottom: none; }
+    .fb-val { font-size: 32px; }
+
+    .footer { flex-direction: column; gap: 12px; padding: 24px 20px; text-align: center; }
+    .footer-r { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .header { padding: 14px 16px; }
+    .header img { height: 44px; }
+    .header-right .client { font-size: 18px; }
+
+    .reel-side { aspect-ratio: 9 / 16; min-height: unset; max-height: 560px; }
+    .reel-name-box { max-width: 240px; padding: 8px 12px 10px; }
+    .reel-name-box .rn-title { font-size: 12px; }
+    .reel-name-box .rn { font-size: 24px; letter-spacing: -0.6px; }
+
+    .hero-nums { grid-template-columns: 1fr; gap: 24px; padding: 24px 18px; }
+    .hero-big { font-size: 56px; }
+
+    .content { padding: 36px 16px; gap: 44px; }
+
+    .eng-grid { grid-template-columns: 1fr; }
+    .eng-cell { border-right: none; border-bottom: 1.5px solid var(--g2); padding: 22px 18px; }
+    .eng-cell:last-child { border-bottom: none; }
+    .ec-val { font-size: 32px; }
+    .eng-cell.highlight .ec-val { font-size: 38px; }
+
+    .countries-grid { grid-template-columns: repeat(2, 1fr); }
+    .src-row { grid-template-columns: 70px 1fr 42px; font-size: 11px; }
+    .src-lbl { font-size: 11px; }
+
+    .a-cta .cta-word { font-size: 38px; letter-spacing: 2px; }
+    .a-big { font-size: 56px; }
+    .fb-val { font-size: 28px; }
+  }
+
+  .count-animate { transition: all 0.1s; }
+
+  /* ── PRINT / SIN SCROLL: mostrar todo el contenido sin animaciones ── */
+  @media print {
+    .eng-cell, .src-wrap, .donut-panel, .cc, .age-wrap,
+    .auto-block, .fb-cell, .aud-icon, .aud-pct {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .hero { break-inside: avoid; }
+    .sec-block, section { break-inside: avoid; }
+    .footer { break-before: avoid; }
+  }
+
+  /* ── FALLBACK SIN JS / prefers-reduced-motion: si el navegador no dispara
+     el IntersectionObserver o el usuario prefiere sin animaciones, se muestra
+     todo el contenido por defecto. ── */
+  .no-js .eng-cell,
+  .no-js .src-wrap,
+  .no-js .donut-panel,
+  .no-js .cc,
+  .no-js .age-wrap,
+  .no-js .auto-block,
+  .no-js .fb-cell,
+  .no-js .aud-icon,
+  .no-js .aud-pct {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .no-js .src-bar-fill,
+  .no-js .fb-bar-fill { transition: none !important; }
+  .no-js .age-bar { height: var(--h, 0%) !important; transition: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eng-cell, .src-wrap, .donut-panel, .cc, .age-wrap,
+    .auto-block, .fb-cell, .aud-icon, .aud-pct {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <img src="lbsm-logo.png" alt="LBSM · Los Buenos Somos Más"
+       onerror="this.style.display='none'">
+  <div class="header-right">
+    <span class="client">Grupo EPI</span>
+    <span class="period">Performance Report · 72 horas</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Reel cover -->
+  <div class="reel-side">
+    <!-- Portada real del reel: LBSM + GRUPO EPI + integrantes -->
+    <img class="reel-photo" src="cover-epi.jpg" alt="Grupo EPI · Reel cover"
+         onerror="this.style.display='none'; document.getElementById('reel-fallback').style.display='block'; document.getElementById('reel-overlay').style.display='flex';">
+
+    <!-- Fallback artístico: atardecer + siluetas de los 4 integrantes (solo se muestra si la imagen no carga) -->
+    <div class="reel-placeholder" id="reel-fallback" style="display:none;">
+      <div class="reel-figures" aria-hidden="true">
+        <svg viewBox="0 0 260 120" preserveAspectRatio="xMidYEnd meet" xmlns="http://www.w3.org/2000/svg">
+          <!-- 4 siluetas estilizadas de músicos -->
+          <g fill="#111">
+            <!-- Figura 1 · bajo/guitarrista -->
+            <ellipse cx="48" cy="40" rx="7" ry="8"/>
+            <path d="M36 50 Q48 46 60 50 L62 78 L58 118 L38 118 L34 78 Z"/>
+            <path d="M58 62 L80 56 L82 60 L60 68 Z"/>
+            <rect x="78" y="54" width="6" height="10" rx="1"/>
+            <!-- Figura 2 · cantante con micro -->
+            <ellipse cx="108" cy="36" rx="7" ry="8"/>
+            <path d="M96 48 Q108 44 120 48 L122 82 L118 118 L98 118 L94 82 Z"/>
+            <rect x="116" y="38" width="3" height="14" rx="1.5"/>
+            <circle cx="117.5" cy="36" r="3"/>
+            <!-- Figura 3 · baterista/percusión -->
+            <ellipse cx="160" cy="38" rx="7" ry="8"/>
+            <path d="M148 50 Q160 46 172 50 L176 80 L172 118 L150 118 L144 80 Z"/>
+            <rect x="144" y="70" width="18" height="26" rx="2" opacity="0.85"/>
+            <path d="M172 56 L190 52" stroke="#111" stroke-width="2" fill="none"/>
+            <!-- Figura 4 · guitarrista -->
+            <ellipse cx="216" cy="40" rx="7" ry="8"/>
+            <path d="M204 50 Q216 46 228 50 L232 78 L228 118 L208 118 L202 78 Z"/>
+            <path d="M228 64 L248 58 L250 62 L230 70 Z"/>
+            <rect x="246" y="56" width="5" height="9" rx="1"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Overlay de texto (solo fallback — la imagen real ya incluye estos textos) -->
+    <div class="reel-overlay" id="reel-overlay" style="display:none;">
+      <div class="reel-badge">LBSM × Reel</div>
+      <div class="reel-name-box">
+        <span class="rn-title">Simón Benarroch, Reynaldo Guzmán, Gabriel Ermoli y Nicolás Pérez</span>
+        <span class="rn">Grupo EPI</span>
+      </div>
+    </div>
+    <div class="reel-views">👁 102.852</div>
+  </div>
+
+  <!-- Números -->
+  <div class="hero-nums">
+    <div class="hero-metric">
+      <span class="hero-eyebrow">Visualizaciones Totales · Instagram + Facebook</span>
+      <div class="hero-big" id="totalViews">102.852</div>
+      <span class="hero-sub">Vistas acumuladas en las primeras 72 horas</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-metric">
+      <span class="hero-eyebrow">Leads Generados · Automatización IG + Facebook</span>
+      <div class="hero-big hero-yellow" id="leads">808</div>
+      <span class="hero-sub">Mensajes directos automatizados</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- ENGAGEMENT -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot"></span>Engagement · Instagram</h2>
+    <div class="eng-grid">
+      <div class="eng-cell" data-delay="0">
+        <span class="ec-lbl">Likes</span>
+        <span class="ec-val count-up" data-target="7900">0</span>
+        <span class="ec-rate">8,75% like rate</span>
+        <span class="tag-up">↑ Superior al promedio</span>
+      </div>
+      <div class="eng-cell highlight" data-delay="80">
+        <span class="ec-lbl">Comentarios</span>
+        <span class="ec-val count-up" data-target="1900">0</span>
+        <span class="ec-rate">2,11% comment rate</span>
+        <span class="tag-up yellow-bg">↑ Conversación muy alta</span>
+      </div>
+      <div class="eng-cell" data-delay="160">
+        <span class="ec-lbl">Compartidos</span>
+        <span class="ec-val count-up" data-target="2748">0</span>
+        <span class="ec-rate">3,05% share rate</span>
+        <span class="tag-up">↑ Viralidad por DM</span>
+      </div>
+      <div class="eng-cell" data-delay="240">
+        <span class="ec-lbl">Reposteados</span>
+        <span class="ec-val count-up" data-target="233">0</span>
+        <span class="ec-rate">Shares a perfil / historia</span>
+      </div>
+      <div class="eng-cell" data-delay="320">
+        <span class="ec-lbl">Guardados</span>
+        <span class="ec-val count-up" data-target="766">0</span>
+        <span class="ec-rate">0,85% save rate</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGEN DE VISTAS -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot yellow"></span>Origen de las Visualizaciones · Instagram</h2>
+    <div class="src-wrap" id="src-wrap">
+      <div class="src-row">
+        <span class="src-lbl">Feed</span>
+        <div class="src-bar"><div class="src-bar-fill" data-width="80.8"></div></div>
+        <span class="src-pct">80,8%</span>
+      </div>
+      <div class="src-row">
+        <span class="src-lbl">Historias</span>
+        <div class="src-bar"><div class="src-bar-fill" data-width="8.0"></div></div>
+        <span class="src-pct">8,0%</span>
+      </div>
+      <div class="src-row">
+        <span class="src-lbl">Pestaña Reels</span>
+        <div class="src-bar"><div class="src-bar-fill" data-width="6.5"></div></div>
+        <span class="src-pct">6,5%</span>
+      </div>
+      <div class="src-row">
+        <span class="src-lbl">Perfil</span>
+        <div class="src-bar"><div class="src-bar-fill" data-width="1.2"></div></div>
+        <span class="src-pct">1,2%</span>
+      </div>
+      <div class="src-row">
+        <span class="src-lbl">Sección Explorar</span>
+        <div class="src-bar"><div class="src-bar-fill" data-width="0.1"></div></div>
+        <span class="src-pct">0,1%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCIA -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot yellow"></span>Perfil de la Audiencia</h2>
+    <div class="two-col">
+
+      <!-- GÉNERO -->
+      <div class="donut-panel" id="donut-gender">
+        <div class="dp-label">Género</div>
+        <div class="aud-row">
+
+          <!-- Mujeres -->
+          <div class="aud-card">
+            <div class="aud-icon" style="background:rgba(254,88,0,0.12)">
+              <svg viewBox="0 0 48 60" fill="#FE5800" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="13" r="11"/>
+                <path d="M14,26 Q10,34 6,58 L42,58 Q38,34 34,26 Q29,22 24,22 Q19,22 14,26Z"/>
+              </svg>
+            </div>
+            <div class="aud-pct" style="color:var(--orange)">61,6%</div>
+            <div class="aud-name">Mujeres</div>
+          </div>
+
+          <!-- Donut -->
+          <div class="aud-donut">
+            <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#EEEEEE" stroke-width="20"/>
+              <!-- Mujeres 61.6% → 240.0 -->
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#FE5800" stroke-width="20"
+                id="ap-arc-women" class="ap-arc"
+                transform="rotate(-90 80 80)"/>
+              <!-- Hombres 38.4% → 149.6; inicio en 61.6%×360 - 90 = 131.76° -->
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#2BA3D6" stroke-width="20"
+                id="ap-arc-men" class="ap-arc-2"
+                transform="rotate(131.76 80 80)"/>
+            </svg>
+          </div>
+
+          <!-- Hombres -->
+          <div class="aud-card">
+            <div class="aud-icon" style="background:rgba(43,163,214,0.12)">
+              <svg viewBox="0 0 48 60" fill="#2BA3D6" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="13" r="11"/>
+                <path d="M14,26 Q10,32 10,46 L17,46 L15,58 L24,58 L24,48 L24,48 L24,58 L33,58 L31,46 L38,46 Q38,32 34,26 Q29,22 24,22 Q19,22 14,26Z"/>
+              </svg>
+            </div>
+            <div class="aud-pct" style="color:var(--blue)">38,4%</div>
+            <div class="aud-name">Hombres</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ORIGEN -->
+      <div class="donut-panel" id="donut-follow">
+        <div class="dp-label">Origen de las Vistas</div>
+        <div class="aud-row">
+
+          <!-- Seguidores -->
+          <div class="aud-card">
+            <div class="aud-icon" style="background:rgba(254,88,0,0.12)">
+              <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="11" r="9" fill="#FE5800"/>
+                <path d="M10,23 Q7,30 6,48 L38,48 Q37,30 34,23 Q29,19 22,19 Q15,19 10,23Z" fill="#FE5800"/>
+                <polygon points="40,20 42,26 48,26 43,30 45,36 40,32 35,36 37,30 32,26 38,26" fill="#FACD01"/>
+              </svg>
+            </div>
+            <div class="aud-pct" style="color:var(--orange)">49,5%</div>
+            <div class="aud-name">Seguidores</div>
+          </div>
+
+          <!-- Donut -->
+          <div class="aud-donut">
+            <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#EEEEEE" stroke-width="20"/>
+              <!-- Seguidores 49.5% → 192.83 -->
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#FE5800" stroke-width="20"
+                id="ap-arc-follow" class="ap-arc"
+                transform="rotate(-90 80 80)"/>
+              <!-- No seguidores 50.5% → 196.73; inicio en 49.5%×360 - 90 = 88.2° -->
+              <circle cx="80" cy="80" r="62" fill="none" stroke="#2BA3D6" stroke-width="20"
+                id="ap-arc-nonfol" class="ap-arc-2"
+                transform="rotate(88.2 80 80)"/>
+            </svg>
+          </div>
+
+          <!-- No Seguidores -->
+          <div class="aud-card">
+            <div class="aud-icon" style="background:rgba(43,163,214,0.12)">
+              <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="26" cy="26" rx="21" ry="14" fill="none" stroke="#2BA3D6" stroke-width="3.5"/>
+                <circle cx="26" cy="26" r="8" fill="#2BA3D6"/>
+                <circle cx="26" cy="26" r="3.5" fill="white"/>
+                <line x1="26" y1="10" x2="26" y2="14" stroke="#2BA3D6" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="18" y1="13" x2="20" y2="16" stroke="#2BA3D6" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="34" y1="13" x2="32" y2="16" stroke="#2BA3D6" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="aud-pct" style="color:var(--blue)">50,5%</div>
+            <div class="aud-name">No Seguidores</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COUNTRIES -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot blue"></span>Top 5 Países</h2>
+    <div class="countries-grid">
+      <div class="cc r1" data-delay="0"><span class="cc-flag">🇻🇪</span><span class="cc-pct">39,1%</span><span class="cc-name">Venezuela</span></div>
+      <div class="cc r2" data-delay="80"><span class="cc-flag">🇺🇸</span><span class="cc-pct">19,8%</span><span class="cc-name">Estados Unidos</span></div>
+      <div class="cc r3" data-delay="160"><span class="cc-flag">🇪🇸</span><span class="cc-pct">17,4%</span><span class="cc-name">España</span></div>
+      <div class="cc r4" data-delay="240"><span class="cc-flag">🇵🇹</span><span class="cc-pct">4,9%</span><span class="cc-name">Portugal</span></div>
+      <div class="cc r5" data-delay="320"><span class="cc-flag">🇨🇱</span><span class="cc-pct">2,8%</span><span class="cc-name">Chile</span></div>
+    </div>
+  </section>
+
+  <!-- AGE -->
+  <section>
+    <div class="age-wrap" id="age-section">
+      <div class="age-header">
+        <h2 class="sec-title" style="margin-bottom:4px;"><span class="st-dot"></span>Rango de Edad</h2>
+        <p class="ah-sub">El <strong>58,0%</strong> de la audiencia tiene entre 45 y 64 años</p>
+      </div>
+      <div class="age-bars">
+        <div class="age-col">
+          <span class="age-val">1,3%</span>
+          <div class="age-bar t-gray" data-height="4" style="height:0%"></div>
+          <span class="age-lbl">18–24</span>
+        </div>
+        <div class="age-col">
+          <span class="age-val">8,5%</span>
+          <div class="age-bar t-gray" data-height="26" style="height:0%"></div>
+          <span class="age-lbl">25–34</span>
+        </div>
+        <div class="age-col">
+          <span class="age-val">20,5%</span>
+          <div class="age-bar t-blue" data-height="63" style="height:0%"></div>
+          <span class="age-lbl">35–44</span>
+        </div>
+        <div class="age-col">
+          <span class="age-val">32,8%</span>
+          <div class="age-bar t-orange" data-height="100" style="height:0%"></div>
+          <span class="age-lbl">45–54</span>
+        </div>
+        <div class="age-col">
+          <span class="age-val">25,2%</span>
+          <div class="age-bar t-orange" data-height="77" style="height:0%"></div>
+          <span class="age-lbl">55–64</span>
+        </div>
+        <div class="age-col">
+          <span class="age-val">11,5%</span>
+          <div class="age-bar t-blue" data-height="35" style="height:0%"></div>
+          <span class="age-lbl">65+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMATION -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot"></span>Automatización · CTA de Conversión</h2>
+    <div class="auto-block" id="auto-block">
+      <div class="a-col">
+        <span class="a-lbl">Total Leads Generados</span>
+        <span class="a-big count-up" data-target="808">0</span>
+        <span class="a-sub">Usuarios que recibieron respuesta automática por DM</span>
+      </div>
+      <div class="auto-div"></div>
+      <div class="a-col">
+        <div class="a-rows">
+          <div class="a-row">
+            <span class="ar-platform">Instagram</span>
+            <span class="ar-val count-up" data-target="756">0</span>
+            <span class="ar-conv">0,84% conversión sobre vistas IG</span>
+          </div>
+          <div style="height:1px; background:rgba(0,0,0,0.1);"></div>
+          <div class="a-row">
+            <span class="ar-platform">Facebook</span>
+            <span class="ar-val count-up" data-target="52">0</span>
+            <span class="ar-conv">0,41% conversión sobre vistas FB</span>
+          </div>
+        </div>
+      </div>
+      <div class="auto-div"></div>
+      <div class="a-col">
+        <div class="a-cta">
+          <span class="cta-lbl">Palabra clave</span>
+          <span class="cta-word">EPI</span>
+          <span class="cta-desc">Cada comentario con la palabra "epi" activó el envío automático del mensaje por DM.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACEBOOK -->
+  <section>
+    <h2 class="sec-title"><span class="st-dot blue"></span>Facebook</h2>
+    <div class="fb-grid">
+      <div class="fb-cell" data-delay="0">
+        <span class="fb-lbl">Visualizaciones</span>
+        <span class="fb-val count-up" data-target="12599">0</span>
+        <div class="fb-bar"><div class="fb-bar-fill" data-width="100"></div></div>
+      </div>
+      <div class="fb-cell" data-delay="120">
+        <span class="fb-lbl">Me Gusta</span>
+        <span class="fb-val count-up" data-target="758">0</span>
+        <div class="fb-bar"><div class="fb-bar-fill" data-width="60"></div></div>
+      </div>
+      <div class="fb-cell" data-delay="240">
+        <span class="fb-lbl">Comentarios</span>
+        <span class="fb-val count-up" data-target="190">0</span>
+        <div class="fb-bar"><div class="fb-bar-fill" data-width="25"></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-l">
+    <span class="footer-brand">Los Buenos Somos Más</span>
+    <span class="footer-tag">✦ Venezolanos que inspiran al mundo</span>
+  </div>
+  <p class="footer-r">Datos registrados a las 72 horas de publicación<br>Reel: Grupo EPI × LBSM · Abril 2026</p>
+</footer>
+
+<script>
+// ── INTERSECTION OBSERVER ──
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+
+    if (el.classList.contains('eng-cell')) {
+      const delay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => {
+        el.classList.add('visible');
+        el.querySelectorAll('.count-up').forEach(n => animateCount(n));
+      }, delay);
+    }
+
+    if (el.id === 'src-wrap') {
+      el.classList.add('visible');
+      setTimeout(() => {
+        el.querySelectorAll('.src-bar-fill').forEach(b => {
+          b.style.width = b.dataset.width + '%';
+        });
+      }, 200);
+    }
+
+    if (el.id === 'donut-gender') {
+      el.classList.add('visible');
+      setTimeout(() => {
+        document.getElementById('ap-arc-women').style.strokeDasharray = '240.0 389.56';
+        document.getElementById('ap-arc-men').style.strokeDasharray = '149.6 389.56';
+      }, 300);
+    }
+    if (el.id === 'donut-follow') {
+      el.classList.add('visible');
+      setTimeout(() => {
+        document.getElementById('ap-arc-follow').style.strokeDasharray = '192.83 389.56';
+        document.getElementById('ap-arc-nonfol').style.strokeDasharray = '196.73 389.56';
+      }, 300);
+    }
+
+    if (el.classList.contains('cc')) {
+      const delay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => el.classList.add('visible'), delay);
+    }
+
+    if (el.id === 'age-section') {
+      el.classList.add('visible');
+      el.querySelectorAll('.age-bar').forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.height = bar.dataset.height + '%';
+        }, i * 120 + 200);
+      });
+    }
+
+    if (el.id === 'auto-block') {
+      el.classList.add('visible');
+      el.querySelectorAll('.count-up').forEach(n => animateCount(n));
+    }
+
+    if (el.classList.contains('fb-cell')) {
+      const delay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => {
+        el.classList.add('visible');
+        el.querySelectorAll('.count-up').forEach(n => animateCount(n));
+        el.querySelectorAll('.fb-bar-fill').forEach(b => {
+          b.style.width = b.dataset.width + '%';
+        });
+      }, delay);
+    }
+
+    io.unobserve(el);
+  });
+}, { threshold: 0.25 });
+
+document.querySelectorAll('.eng-cell, #src-wrap, #donut-gender, #donut-follow, .cc, #age-section, #auto-block, .fb-cell')
+  .forEach(el => io.observe(el));
+
+// ── COUNT-UP ANIMATION ──
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1400;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// ── HERO NUMBER ANIMATION (runs on load) ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    animateCount(Object.assign(document.getElementById('totalViews'), {dataset: {target: '102852'}, textContent: '0'}));
+    animateCount(Object.assign(document.getElementById('leads'), {dataset: {target: '808'}, textContent: '0'}));
+  }, 400);
+});
+
+// ── SAFETY NET: si el observer no disparó para algún elemento (ej. lectores
+// que no permiten scroll, impresión a PDF programática, SSR), forzar visibilidad
+// después de 2.5 s para garantizar que todo el contenido sea visible.
+setTimeout(() => {
+  document.querySelectorAll('.eng-cell, #src-wrap, #donut-gender, #donut-follow, .cc, #age-section, #auto-block, .fb-cell')
+    .forEach(el => {
+      if (!el.classList.contains('visible')) {
+        el.classList.add('visible');
+        el.querySelectorAll('.count-up').forEach(n => { if (n.textContent === '0') animateCount(n); });
+        el.querySelectorAll('.src-bar-fill, .fb-bar-fill').forEach(b => { b.style.width = b.dataset.width + '%'; });
+        el.querySelectorAll('.age-bar').forEach(b => { b.style.height = b.dataset.height + '%'; });
+      }
+    });
+  // Donuts
+  const setDash = (id, val) => { const el = document.getElementById(id); if (el) el.style.strokeDasharray = val + ' 389.56'; };
+  setDash('ap-arc-women', 240.0); setDash('ap-arc-men', 149.6);
+  setDash('ap-arc-follow', 192.83); setDash('ap-arc-nonfol', 196.73);
+}, 2500);
+</script>
+</body>
+</html>
